@@ -7,6 +7,8 @@ namespace DotBudget.Data
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -94,7 +96,7 @@ namespace DotBudget.Data
                 entity.HasOne(r => r.Category)
                     .WithMany(c => c.Receipts)
                     .HasForeignKey(r => r.CategoryId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             builder.Entity<ApplicationUser>()

@@ -11,7 +11,6 @@ namespace DotBudget.Data.Services
         }
         public Profile GetProfileById(string id)
         {
-            // Input validation
             if (string.IsNullOrWhiteSpace(id))
             {
                 throw new ArgumentException("Profile ID cannot be empty", nameof(id));
@@ -51,6 +50,12 @@ namespace DotBudget.Data.Services
                 context.Profiles.Remove(profile);
                 context.SaveChanges();
             }
+        }
+
+        public Profile UpdateProfile(Profile updatedProfile) {
+            context.Profiles.Update(updatedProfile);
+            context.SaveChanges();
+            return updatedProfile;
         }
     }
 }

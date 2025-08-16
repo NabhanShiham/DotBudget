@@ -57,19 +57,32 @@ namespace DotBudget.Data.Controllers
             try
             {
                 profileService.DeleteProfile(id);
-                return NoContent(); 
+                return NoContent();
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(ex.Message); 
+                return BadRequest(ex.Message);
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message); 
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Failed to delete profile"); 
+                return StatusCode(500, "Failed to delete profile");
+            }
+        }
+
+        [HttpPut]
+        [Consumes("application/json")]
+        public ActionResult UpdateProfile([FromBody] Profile updatedProfile) {
+            try
+            {
+                profileService.UpdateProfile(updatedProfile);
+                return Ok("Profile Updated Successfully!");
+            }
+            catch (ArgumentException ex) { 
+                return BadRequest(ex.Message);
             }
         }
 

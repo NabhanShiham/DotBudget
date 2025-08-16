@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotBudget.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250814093735_AddCategoriesAndReceipts")]
-    partial class AddCategoriesAndReceipts
+    [Migration("20250816050450_AddCategoryAndReceipt")]
+    partial class AddCategoryAndReceipt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -343,7 +343,7 @@ namespace DotBudget.Migrations
                     b.HasOne("DotBudget.Data.Category", "Category")
                         .WithMany("Receipts")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");

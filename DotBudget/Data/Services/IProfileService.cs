@@ -7,5 +7,6 @@ namespace DotBudget.Data.Services
         public abstract Profile GetProfileById(String id);
         public abstract Profile AddProfile(Profile profile);
         public abstract void DeleteProfile(String id);
+        public Profile UpdateProfile(Profile updatedProfile);
     }
 }
